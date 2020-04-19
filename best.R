@@ -18,8 +18,8 @@ best <- function(state, outcome) {
         ##return error message of 'invalid state'
                                         stop("invalid state")
         ##else logically test if outcome argumant value matches any of the outcomes of interest. If false...
-                                        } else {
-                                                (outcome %in% names(outcomes) == FALSE)         
+                                        } else if(outcome %in% names(outcomes) == FALSE) {
+                                                         
         ##return an error message of 'invalid outcome'
                                                 stop("invalid outcome")
         }
