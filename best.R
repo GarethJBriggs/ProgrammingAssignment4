@@ -4,17 +4,11 @@ best <- function(state, outcome) {
 ##initialise data frame
         hosp_care_df <- data.frame()
 ##read data
-        hosp_care_df <- read.csv("outcome-of-care-measures.csv", na.strings="Not Available", stringsAsFactors=FALSE)
+        hosp_care_df <- read.csv("outcome-of-care-measures.csv", na.strings="Not Available", stringsAsFactors = FALSE)
 ##set the outcomes terms in a vector, names of out come equalling column index for ease of subsetting
         outcomes <- c("heart attack" = 11, "heart failure" = 17, "pneumonia" = 23)
-##subset intial dataframe so that it contains only hosp, states and outcome columns
-        hosp_hso_df <- hosp_care_df[, c(2, 7, outcomes[outcome])]
-##rename the dataframe columns for ease of use
-        names(hosp_hso_df) <- c("hosp", "state", "outcome")
-##subset a vector of states
-        states_vec <- hosp_hso_df[, "state"]
 ##logically test if state argument value is contained in the states vector. If false...
-        if(state %in% states_vec == FALSE) {
+        if(state %in% hosp_care_df[, 7] == FALSE) {
         ##return error message of 'invalid state'
                                         stop("invalid state")
         ##else logically test if outcome argumant value matches any of the outcomes of interest. If false...
@@ -23,6 +17,10 @@ best <- function(state, outcome) {
         ##return an error message of 'invalid outcome'
                                                 stop("invalid outcome")
         }
+##subset intial dataframe so that it contains only hosp, states and outcome columns
+        hosp_hso_df <- hosp_care_df[, c(2, 7, outcomes[outcome])]
+##rename the dataframe columns for ease of use
+        names(hosp_hso_df) <- c("hosp", "state", "outcome")
 ##subset dataframe by state of interest in states column
         hosp_so_df <- hosp_hso_df[hosp_hso_df$state == state, ]
 ##create logical vector checking for NA values
