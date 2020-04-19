@@ -1,6 +1,4 @@
-state = "TX"
-outcome = "heart attack"
-
+best <- function(state, outcome) {
 ## working directory
         setwd('C:/Users/GEVA/Dropbox/Coursera-R-Programming/Programming Assingnment 3 Data')
 ##initialise data frame
@@ -13,15 +11,17 @@ outcome = "heart attack"
         hosp_hso_df <- hosp_care_df[, c(2, 7, outcomes[outcome])]
 ##rename the dataframe columns for ease of use
         names(hosp_hso_df) <- c("hosp", "state", "outcome")
-##logically test if state argument value is contained in the dataframe subset of the state column. If false...
-        if(state%in%hosp_hso_df$state) {
-##return error message of 'invalid state'
-                                            stop("invalid state")
-##else logically test if outcome argumant value matches any of the outcomes of interest. If false...
-                                            } else {
-                                                    (outcome%in%hosp_hso_df==F)         
-##return an error message of 'invalid outcome'
-                                                    stop("invalid outcome")
+##subset a vector of states
+        states_vec <- hosp_hso_df[, "state"]
+##logically test if state argument value is contained in the states vector. If false...
+        if(state %in% states_vec == FALSE) {
+        ##return error message of 'invalid state'
+                                        stop("invalid state")
+        ##else logically test if outcome argumant value matches any of the outcomes of interest. If false...
+                                        } else {
+                                                (outcome %in% names(outcomes) == FALSE)         
+        ##return an error message of 'invalid outcome'
+                                                stop("invalid outcome")
         }
 ##subset dataframe by state of interest in states column
         hosp_so_df <- hosp_hso_df[hosp_hso_df$state == state, ]
@@ -31,7 +31,9 @@ outcome = "heart attack"
         hosp_so_nna_df <- hosp_so_df[good, ]
 ##rank the hosps in the state by outcome
         hosp_arr_df <- arrange(hosp_so_nna_df, outcome, hosp)
-##index the data to return the the hosp value with best outcome that is first alphabetically
+        ##index the data to return the the hosp value with best outcome that is first alphabetically
         Hospital.Name <- hosp_arr_df[1,1]
 ##return the hosp name
         Hospital.Name
+}
+
