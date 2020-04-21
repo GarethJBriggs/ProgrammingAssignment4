@@ -1,6 +1,6 @@
 ## declare variables
 state <- "TX"
-outcome <- "heart attack"
+outcome <- "heart failure"
 num <- 4
 ## set working directory
         setwd('C:/Users/GEVA/Dropbox/Coursera-R-Programming/Programming Assingnment 3 Data')
@@ -9,7 +9,7 @@ num <- 4
 ## read data
         hosp_care_df <- read.csv("outcome-of-care-measures.csv", na.strings="Not Available", stringsAsFactors  = FALSE)
 ## define outcomes in terms of column numbers
-        outcomes <- C("heart attack" = 11, "heart failure" = 17, "pneumonia" = 23)
+        outcomes <- c("heart attack" = 11, "heart failure" = 17, "pneumonia" = 23)
 ## IF state is absent from the dataframe)
         if(state %in% hosp_care_df[, 7] == FALSE) {
         ##  stop rankhospital, print "invalid state",
@@ -24,7 +24,7 @@ num <- 4
 ## remame the dataframe columns
         names(hosp_hso_df) <- c("hosp", "state", "outcome")
 ## subset the dataframe by state
-         hosp_ho <- hosp_hso_df
+         hosp_ho <- hosp_hso_df[hosp_hso_df$state==state, ]
 ## identify NA values
         good <- complete.cases(hosp_ho)
 ## remove NA values
@@ -34,17 +34,17 @@ num <- 4
 ## add a rank column to the dataframe and populate it
         hosp_arr$rank <- 1:nrow(hosp_arr)
 ## IF num equals best
-        if(num = "best") {
+        if(num == "best") {
                 ## subset the dataframe by maximum rank
                 death_rate <- max(hosp_arr[rank, ])
 ## ELSE IF num equals worst
-        } else if(num = "worst") {
+        } else if(num == "worst") {
         ## subset the dataframe by minimum rank
                 death_rate <- min(hosp_arr[rank, ])
 ## ELSE IF num equals numeric
-        } else if(num = numeric()) {        
+        } else if(is.numeric(num) == TRUE) {        
         ## subset the datafrane by num
-                death_rate <- hosp_arr[rank$num, ]
+                death_rate <- hosp_arr[hosp_arr$rank==num, ]
         }
 ## return 30-day death rate 
-        death_rate
+        death_rate[1,1]
