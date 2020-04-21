@@ -1,7 +1,7 @@
 ## declare variables
-state <- "TX"
-outcome <- "heart failure"
-num <- 4
+state <- "MN"
+outcome <- "heart attack"
+num <- "5000"
 ## set working directory
         setwd('C:/Users/GEVA/Dropbox/Coursera-R-Programming/Programming Assingnment 3 Data')
 ## initialise data frame
@@ -36,14 +36,17 @@ num <- 4
 ## IF num equals best
         if(num == "best") {
                 ## subset the dataframe by maximum rank
-                death_rate <- max(hosp_arr[rank, ])
+                death_rate <- head(hosp_arr, 1)
 ## ELSE IF num equals worst
         } else if(num == "worst") {
         ## subset the dataframe by minimum rank
-                death_rate <- min(hosp_arr[rank, ])
+                death_rate <- tail(hosp_arr, 1)
+## ELSE IF num greater than the number of hospitals in the state
+        } else if (num > nrow(hosp_arr)) {
+                return(NA)
 ## ELSE IF num equals numeric
         } else if(is.numeric(num) == TRUE) {        
-        ## subset the datafrane by num
+        ## subset the datafrane bynum
                 death_rate <- hosp_arr[hosp_arr$rank==num, ]
         }
 ## return 30-day death rate 
