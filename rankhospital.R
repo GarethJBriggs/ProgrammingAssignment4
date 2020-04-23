@@ -13,7 +13,7 @@ rankhospital <- function(state, outcome, num) {
                 stop("invalid state")
                 ## ELSE IF outcome is absent from outcomes
         } else if(outcome %in% names(outcomes) == FALSE) {
-                ## stop rankhospital, print "invalid state"
+                ## stop rankhospital, print "invalid outcome"
                 stop("invalid outcome")
         }
         ## subset the dataframe by hosp, state and outcome
