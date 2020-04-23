@@ -32,18 +32,18 @@ rankhospital <- function(state, outcome, num) {
         hosp_arr$rank <- 1:nrow(hosp_arr)
         ## IF num equals best
         if(num == "best") {
-                ## subset the dataframe by maximum rank
+                ## read the head of the dataframe to obtain maximum value
                 death_rate <- head(hosp_arr, 1)
                 ## ELSE IF num equals worst
         } else if(num == "worst") {
-                ## subset the dataframe by minimum rank
+                ## read the tail of the dataframe to obtain minimum value
                 death_rate <- tail(hosp_arr, 1)
                 ## ELSE IF num greater than the number of hospitals in the state
         } else if (num > nrow(hosp_arr)) {
                 return(NA)
                 ## ELSE IF num equals numeric
         } else if(is.numeric(num) == TRUE) {        
-                ## subset the datafrane bynum
+                ## subset the dataframe by num
                 death_rate <- hosp_arr[hosp_arr$rank==num, ]
         }
         ## return 30-day death rate 
