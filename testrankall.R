@@ -38,8 +38,8 @@
                          ## ELSE IF num equals numeric
                  } else if(is.numeric(num) == TRUE) {
                          ## return the hospital rank equivelant to num
-                         z  <- (x[num, ])
-                         return(z$hospital)
+                         z  <- (x[, "hospital"])
+                         return(z[num, ])
                  }
          }, num  )
 ## unlist the lappy output
