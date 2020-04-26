@@ -1,6 +1,6 @@
 ## declare variables
-        outcome = "heart attack"
-        num = "20"
+        outcome = "pneumonia"
+        num = "worst"
 ## set working directory
         setwd('C:/Users/GEVA/Dropbox/Coursera-R-Programming/Programming Assingnment 3 Data')
 ## initialise data frame
@@ -38,9 +38,7 @@
                          ## ELSE IF num equals numeric
                  } else if(is.numeric(num) == TRUE) {
                          ## return the hospital rank equivelant to num
-                         z  <- (x[, "hospital"])
-                         return(z[num, ])
-                 }
+                         return(x$hospital[num])                 }
          }, num  )
 ## unlist the lappy output
         hosp_vec <- unlist(rall_list) 
