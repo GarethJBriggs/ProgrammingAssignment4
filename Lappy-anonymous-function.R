@@ -1,4 +1,4 @@
-rall_list<- lappy(s, function(x, num)) {
+rall_list <- lappy(s, function(x, num)) {
 if(num == "best") {
         ## return first hospital per state list in split
         return(x$hospital[1])
@@ -10,6 +10,6 @@ if(num == "best") {
         ## ELSE IF num equals numeric
 } else if(num == is.numeric(num)) {
         ## return the hospital rank equivelant to num
-        return(x$hospital[num]
+        return(x$hospital[num])
 }
 }
