@@ -1,6 +1,6 @@
 ## declare variables
         outcome = "heart attack"
-        num = "20"
+        num = 20
 ## set working directory
         setwd('C:/Users/GEVA/Dropbox/Coursera-R-Programming/Programming Assingnment 3 Data')
 ## initialise data frame
@@ -26,18 +26,17 @@
 ## split the dataframe by state
         s <- split(hosp_arr, hosp_arr$state)
 ## use lappy with an anonymous function to isolate hospitals corrisponding to num arg
-        rall_list <- lapply(s, function(x, num) {
+        rall_list <- lapply(s, function(x, num ) {
                                         if(is.numeric(num) == TRUE) {
                                         ## return the hospital rank equivelant to num
-                                         z  <- (x[, "hospital"])
-                                        return(z[num, ])
+                                        return(x$hospital[num])
                                 }
-        }, num  )
+        }, num)
 ## unlist the lappy output
         hosp_vec <- unlist(rall_list) 
 ## use names to generate a vector of state names
         state_vec <- names(hosp_vec)
 ## create a dataframe of the state and hospital names
-        rall_df <- data.frame(hospital = hosp_vec, state = state_vec, row.names = state_vec)
+rall_df <- data.frame(hospital = hosp_vec, state = state_vec, row.names = state_vec)
 ## return the dataframe 
-        rall_df
+rall_df
